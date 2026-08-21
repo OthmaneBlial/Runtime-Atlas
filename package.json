@@ -33,7 +33,7 @@
     "test:e2e": "npm run build && npm run test:e2e:run",
     "test:e2e:run": "playwright test",
     "test:e2e:headed": "npm run build && playwright test --headed",
-    "typecheck": "tsc -b",
+    "typecheck": "npm run build:sdk && tsc -b",
     "lint": "oxlint . --deny-warnings",
     "format": "prettier --write . --ignore-unknown",
     "format:check": "prettier --check . --ignore-unknown",
