@@ -1,0 +1,21 @@
+{
+  "name": "@runtime-atlas/sdk",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Node.js runtime instrumentation for Runtime Atlas",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

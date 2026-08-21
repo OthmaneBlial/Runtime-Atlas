@@ -1,0 +1,41 @@
+{
+  "name": "runtime-atlas",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n atlas,ui -c cyan,magenta \"npm:dev:server\" \"npm:dev:ui\"",
+    "dev:server": "tsx watch server/index.ts",
+    "dev:ui": "vite",
+    "build:sdk": "npm run build --workspace @runtime-atlas/sdk",
+    "build": "npm run build:sdk && tsc -b && vite build",
+    "start": "tsx server/index.ts",
+    "test": "vitest run",
+    "check": "npm run test && npm run build"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "concurrently": "latest",
+    "express": "latest",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "ts-morph": "latest",
+    "tsx": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@types/express": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "jsdom": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}
