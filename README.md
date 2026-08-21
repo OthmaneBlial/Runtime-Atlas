@@ -1,5 +1,8 @@
 # Runtime Atlas
 
+[![CI](https://github.com/OthmaneBlial/Runtime-Atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/OthmaneBlial/Runtime-Atlas/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/OthmaneBlial/Runtime-Atlas/actions/workflows/codeql.yml/badge.svg)](https://github.com/OthmaneBlial/Runtime-Atlas/actions/workflows/codeql.yml)
+[![Latest release](https://img.shields.io/github/v/release/OthmaneBlial/Runtime-Atlas?display_name=tag)](https://github.com/OthmaneBlial/Runtime-Atlas/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-b9f227.svg)](LICENSE)
 ![Node.js 24.15.0](https://img.shields.io/badge/node-24.15.0-5FA04E?logo=nodedotjs)
 ![Privacy: local-first](https://img.shields.io/badge/privacy-local--first-6adce7.svg)
@@ -7,6 +10,8 @@
 Runtime Atlas turns TypeScript declarations and recent trace evidence into a live, source-backed application map. Watch one request cross routes, middleware, services, databases, caches, queues, and external APIs; inspect the exact declaration behind a node; then replay the causal path event by event.
 
 It is a local-first developer tool: no account, hosted backend, analytics, or persistent telemetry database is included.
+
+**[Explore the live showcase and documentation](https://othmaneblial.github.io/Runtime-Atlas/)**
 
 ![Runtime Atlas showing a completed checkout request across a source-backed application map](docs/assets/runtime-atlas-checkout.png)
 
