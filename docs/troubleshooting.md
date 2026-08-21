@@ -38,3 +38,7 @@ Choose a different server port, for example `PORT=4320 npm run dev:server`. Duri
 ## Node.js prints engine warnings
 
 Use the version pinned in `.nvmrc` (`nvm install && nvm use`) and reinstall with `npm ci`. The dependency graph is tested against that runtime in CI.
+
+## Playwright cannot launch Chrome
+
+The repository-owned browser tests use the installed Google Chrome channel and do not require a downloaded browser binary. Install or update Google Chrome, confirm it launches normally, then rerun `npm run test:e2e`. Set `PLAYWRIGHT_BROWSER_CHANNEL` only when intentionally validating another Playwright-supported Chromium channel.

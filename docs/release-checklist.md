@@ -11,11 +11,13 @@
 
 - [ ] `npm ci` succeeds on the pinned Node.js version.
 - [ ] `npm run check` succeeds from a clean checkout.
+- [ ] Playwright desktop/mobile journeys and the real-browser axe audit are green in current Chrome.
 - [ ] `npm audit --omit=dev --audit-level=high` succeeds.
 - [ ] `docker build -t runtime-atlas:release .` succeeds.
 - [ ] The container health check becomes healthy.
 - [ ] Checkout, search, failure, history selection, replay, source inspection, export, clear, reconnect, and empty/error states were exercised.
-- [ ] Keyboard navigation, focus visibility, reduced motion, and narrow/wide layouts were manually checked in a real browser.
+- [ ] The committed screenshots were regenerated when visible UI behavior changed.
+- [ ] Keyboard navigation and focus visibility were manually spot-checked in Chrome; Firefox and Safari cross-browser behavior was manually checked.
 
 ## GitHub release
 

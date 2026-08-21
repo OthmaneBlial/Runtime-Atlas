@@ -7,3 +7,5 @@ dist-server/
 .env.*
 !.env.example
 .runtime-atlas/
+playwright-report/
+test-results/

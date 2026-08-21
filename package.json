@@ -30,6 +30,9 @@
     "start": "node dist-server/server/index.js",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "npm run build && npm run test:e2e:run",
+    "test:e2e:run": "playwright test",
+    "test:e2e:headed": "npm run build && playwright test --headed",
     "typecheck": "tsc -b",
     "lint": "oxlint . --deny-warnings",
     "format": "prettier --write . --ignore-unknown",
@@ -37,16 +40,19 @@
     "check:repo": "node scripts/check-repository.mjs",
     "check:docs": "node scripts/check-docs.mjs",
     "check:sdk-package": "npm pack --dry-run --workspace @runtime-atlas/sdk",
+    "screenshots": "npm run build && node scripts/capture-screenshots.mjs",
     "smoke": "node scripts/smoke-production.mjs",
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build && npm run check:repo && npm run check:docs && npm run check:sdk-package && npm run smoke"
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build && npm run test:e2e:run && npm run check:repo && npm run check:docs && npm run check:sdk-package && npm run smoke"
   },
   "dependencies": {
     "express": "^5.2.1",
     "ts-morph": "^28.0.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@fontsource-variable/ibm-plex-sans": "^5.3.0",
     "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@playwright/test": "^1.62.1",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
     "@types/express": "^5.0.6",

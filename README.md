@@ -8,6 +8,8 @@ Runtime Atlas turns TypeScript declarations and recent trace evidence into a liv
 
 It is a local-first developer tool: no account, hosted backend, analytics, or persistent telemetry database is included.
 
+![Runtime Atlas showing a completed checkout request across a source-backed application map](docs/assets/runtime-atlas-checkout.png)
+
 ## Why it is different
 
 - **Static evidence:** `ts-morph` finds literal `atlas.*` declarations, call relationships, metadata, and exact source locations without executing the analyzed project.
@@ -18,6 +20,20 @@ It is a local-first developer tool: no account, hosted backend, analytics, or pe
 - **Useful failure states:** the built-in local demo includes deterministic checkout, search, and dependency-outage scenarios.
 
 The built-in downstream operations are simulated delays inside the local process. They create real causal runtime events, but they do not call Stripe, PostgreSQL, Redis, Kafka, or TaxJar.
+
+## Product tour
+
+### Start from the architecture derived from code
+
+![Runtime Atlas source-derived topology before a request is captured](docs/assets/runtime-atlas-overview.png)
+
+### Inspect runtime evidence at the exact declaration
+
+![Runtime Atlas source inspector showing the Orders DB declaration and measured runtime evidence](docs/assets/runtime-atlas-inspector.png)
+
+### Keep the live map usable on a narrow screen
+
+![Runtime Atlas responsive live map in a mobile Chrome viewport](docs/assets/runtime-atlas-mobile.png)
 
 ## Quick start
 
@@ -196,19 +212,23 @@ Every response receives a request ID and restrictive browser security headers. A
 npm run check
 ```
 
-The command checks formatting and lint, type-checks, runs unit/component/integration tests, builds the SDK/server/UI, verifies required repository files and common credential signatures, checks local documentation links and SDK tarball contents, then boots the compiled production server and exercises both success and failure scenarios over HTTP. The production smoke test reports measured startup and checkout time and enforces 100 KiB JavaScript / 20 KiB CSS gzip entry-asset budgets.
+The command checks formatting and lint, type-checks, runs unit/component/integration tests, builds the SDK/server/UI, runs the compiled product in Chrome at desktop and mobile viewports, performs a real-browser axe audit, verifies required repository files and common credential signatures, checks local documentation links and SDK tarball contents, then exercises both success and failure scenarios over HTTP. The production smoke test reports measured startup and checkout time and enforces 100 KiB JavaScript / 20 KiB CSS gzip entry-asset budgets.
 
 Useful focused commands:
 
 ```bash
 npm test
+npm run test:e2e
 npm run typecheck
 npm run lint
 npm run build
 npm run smoke
+npm run screenshots
 npm audit --omit=dev --audit-level=high
 docker build --tag runtime-atlas:local .
 ```
+
+`npm run test:e2e` builds the production application, starts an isolated local server, and validates Chrome desktop plus a Pixel 7 viewport. It fails on unexpected console errors, page exceptions, failed requests, HTTP errors, accessibility violations, or mobile horizontal overflow. `npm run screenshots` regenerates the four browser-validated images in `docs/assets`; both commands require a current Google Chrome installation.
 
 ## Repository map
 
@@ -216,6 +236,7 @@ docker build --tag runtime-atlas:local .
 | --------------- | ------------------------------------------------------------------------------------------------------------ |
 | `server/`       | Express application, configuration, AST analyzer, OTLP conversion, runtime retention, and deterministic demo |
 | `src/`          | React workspace, live topology reconciliation, replay, inspector, and interaction tests                      |
+| `e2e/`          | Playwright desktop/mobile product journeys and real-browser accessibility checks                             |
 | `packages/sdk/` | Framework-neutral Node.js instrumentation package and transport                                              |
 | `shared/`       | API/event contracts shared by server and UI                                                                  |
 | `examples/`     | First-party SDK and standards-shaped OTLP examples                                                           |
@@ -229,7 +250,7 @@ docker build --tag runtime-atlas:local .
 - npm 11.12.1, recorded through `packageManager` and the lockfile.
 - macOS and Linux development environments; CI verifies Ubuntu and the production container uses Debian Bookworm.
 - Docker Engine with the Compose v2 plugin for the included container workflow.
-- Current evergreen browsers with ES modules, SVG `foreignObject`, Server-Sent Events, and CSS `color-mix()` support. The release checklist treats real Chrome/Firefox/Safari and responsive visual checks as manual gates.
+- Current evergreen browsers with ES modules, SVG `foreignObject`, Server-Sent Events, and CSS `color-mix()` support. Playwright continuously verifies current Chrome at desktop and Pixel 7 viewports; the release checklist retains Firefox and Safari as manual cross-browser gates.
 
 ## Security, privacy, and limitations
 

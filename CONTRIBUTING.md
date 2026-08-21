@@ -9,7 +9,7 @@ Thank you for helping make runtime behavior easier to understand. Keep changes f
 3. Run `npm run dev` and open the loopback URL printed by Vite (normally `http://127.0.0.1:5173`).
 4. Before submitting a change, run `npm run check`.
 
-The complete check formats, lints, type-checks, tests, builds, verifies documentation and SDK packaging, and boots the compiled production server for real HTTP scenarios.
+The complete check formats, lints, type-checks, tests, builds, runs the production UI in Chrome at desktop and mobile viewports, verifies documentation and SDK packaging, and boots the compiled production server for real HTTP scenarios. Install current Google Chrome before running it.
 
 ## Change expectations
 
@@ -19,6 +19,7 @@ The complete check formats, lints, type-checks, tests, builds, verifies document
 - Keep source inspection opt-in outside loopback environments.
 - Update the README, `.env.example`, and architecture/privacy documents when contracts change.
 - For UI work, verify keyboard access, visible focus, reduced motion, narrow layouts, and empty/loading/error states.
+- Run `npm run screenshots` when a visible product change affects the browser-validated images in `docs/assets`.
 
 ## Commits and pull requests
 

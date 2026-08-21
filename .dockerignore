@@ -7,5 +7,7 @@ node_modules
 npm-debug.log*
 research_otlp
 screenshots
+playwright-report
+test-results
 *.tsbuildinfo
 .env*

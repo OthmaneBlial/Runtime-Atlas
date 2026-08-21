@@ -236,6 +236,7 @@ export default function App() {
           ref={searchButtonRef}
           type="button"
           className="command-search"
+          aria-label="Find a node"
           onClick={() => setSearchOpen(true)}
         >
           <Search size={13} />
