@@ -39,17 +39,15 @@ export interface AtlasTopology {
     name: string;
     environment: string;
     demo: boolean;
+    canClearTraces?: boolean;
+    maxTraces?: number;
   };
   nodes: AtlasNode[];
   edges: AtlasEdge[];
 }
 
 export type RuntimeEventType =
-  | "trace:start"
-  | "trace:finish"
-  | "span:start"
-  | "span:finish"
-  | "span:error";
+  "trace:start" | "trace:finish" | "span:start" | "span:finish" | "span:error";
 
 export interface RuntimeRequest {
   method: string;

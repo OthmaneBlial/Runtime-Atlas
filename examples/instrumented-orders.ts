@@ -6,7 +6,8 @@ const atlas = createAtlas({
   headers: process.env.ATLAS_INGEST_TOKEN
     ? { authorization: `Bearer ${process.env.ATLAS_INGEST_TOKEN}` }
     : undefined,
-  onError: (error) => console.warn("Atlas collector unavailable", error.message),
+  onError: (error) =>
+    console.warn("Atlas collector unavailable", error.message),
 });
 
 export const ordersDatabase = atlas.database(
@@ -52,7 +53,8 @@ export const createOrderRoute = atlas.route(
 );
 
 // Call this from the real framework route handler.
-export const handleCreateOrder = () => atlas.trace(
-  { method: "POST", path: "/orders", status: 201 },
-  createOrderRoute,
-);
+export const handleCreateOrder = () =>
+  atlas.trace(
+    { method: "POST", path: "/orders", status: 201 },
+    createOrderRoute,
+  );

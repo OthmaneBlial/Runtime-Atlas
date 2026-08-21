@@ -1,7 +1,10 @@
 import { ordersService } from "./orders.js";
 
 declare const atlas: {
-  route: (descriptor: object, handler: () => Promise<unknown>) => () => Promise<unknown>;
+  route: (
+    descriptor: object,
+    handler: () => Promise<unknown>,
+  ) => () => Promise<unknown>;
 };
 
 export const ordersRoute = atlas.route(

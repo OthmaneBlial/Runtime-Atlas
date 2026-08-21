@@ -1,0 +1,16 @@
+services:
+  runtime-atlas:
+    build:
+      context: .
+    init: true
+    read_only: true
+    ports:
+      - "127.0.0.1:4319:4319"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 4319
+      NODE_ENV: production
+      ATLAS_EXPOSE_SOURCE: "true"
+      ATLAS_ALLOW_CLEAR: "true"
+    tmpfs:
+      - /tmp:size=16m,mode=1777

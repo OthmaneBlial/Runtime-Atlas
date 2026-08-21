@@ -3,6 +3,19 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Node.js runtime instrumentation for Runtime Atlas",
+  "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OthmaneBlial/Runtime-Atlas.git",
+    "directory": "packages/sdk"
+  },
+  "keywords": [
+    "observability",
+    "opentelemetry",
+    "tracing",
+    "instrumentation"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -16,6 +29,6 @@
     "build": "tsc -p tsconfig.json"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.22.2"
   }
 }

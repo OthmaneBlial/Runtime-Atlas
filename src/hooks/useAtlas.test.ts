@@ -7,13 +7,15 @@ describe("runtime topology reconciliation", () => {
     const topology: AtlasTopology = {
       generatedAt: "2026-08-20T00:00:00.000Z",
       sourceRoot: "src",
-      nodes: [{
-        id: "route.root",
-        symbol: "root",
-        label: "Root",
-        kind: "route",
-        source: { file: "src/root.ts", line: 1, column: 1 },
-      }],
+      nodes: [
+        {
+          id: "route.root",
+          symbol: "root",
+          label: "Root",
+          kind: "route",
+          source: { file: "src/root.ts", line: 1, column: 1 },
+        },
+      ],
       edges: [],
     };
     const event: RuntimeEvent = {
@@ -70,7 +72,10 @@ describe("runtime topology reconciliation", () => {
     const reconciled = reconcileRuntimeTopology(topology, event);
     expect(reconciled.nodes[0]).toMatchObject({
       source: { file: "/workspace/src/worker.ts", line: 42, runtimeOnly: true },
-      meta: { provenance: "OpenTelemetry", "code.file.path": "/workspace/src/worker.ts" },
+      meta: {
+        provenance: "OpenTelemetry",
+        "code.file.path": "/workspace/src/worker.ts",
+      },
     });
   });
 });

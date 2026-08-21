@@ -2,7 +2,21 @@
   "name": "runtime-atlas",
   "private": true,
   "version": "0.1.0",
+  "description": "Watch real application requests move across a source-backed architecture map in real time.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OthmaneBlial/Runtime-Atlas.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OthmaneBlial/Runtime-Atlas/issues"
+  },
+  "homepage": "https://github.com/OthmaneBlial/Runtime-Atlas#readme",
   "type": "module",
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+  },
+  "packageManager": "npm@11.12.1",
   "workspaces": [
     "packages/*"
   ],
@@ -11,31 +25,54 @@
     "dev:server": "tsx watch server/index.ts",
     "dev:ui": "vite",
     "build:sdk": "npm run build --workspace @runtime-atlas/sdk",
-    "build": "npm run build:sdk && tsc -b && vite build",
-    "start": "tsx server/index.ts",
+    "build:server": "tsc -p tsconfig.server.build.json",
+    "build": "npm run build:sdk && npm run build:server && tsc -b && vite build",
+    "start": "node dist-server/server/index.js",
     "test": "vitest run",
-    "check": "npm run test && npm run build"
+    "test:watch": "vitest",
+    "typecheck": "tsc -b",
+    "lint": "oxlint . --deny-warnings",
+    "format": "prettier --write . --ignore-unknown",
+    "format:check": "prettier --check . --ignore-unknown",
+    "check:repo": "node scripts/check-repository.mjs",
+    "check:docs": "node scripts/check-docs.mjs",
+    "check:sdk-package": "npm pack --dry-run --workspace @runtime-atlas/sdk",
+    "smoke": "node scripts/smoke-production.mjs",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build && npm run check:repo && npm run check:docs && npm run check:sdk-package && npm run smoke"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "concurrently": "latest",
-    "express": "latest",
-    "lucide-react": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "ts-morph": "latest",
-    "tsx": "latest",
-    "vite": "latest"
+    "express": "^5.2.1",
+    "ts-morph": "^28.0.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "latest",
-    "@testing-library/react": "latest",
-    "@types/express": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "jsdom": "latest",
-    "typescript": "latest",
-    "vitest": "latest"
-  }
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "axe-core": "^4.13.0",
+    "concurrently": "^10.0.5",
+    "jsdom": "^30.0.1",
+    "lucide-react": "^1.33.0",
+    "oxlint": "^1.79.0",
+    "prettier": "^3.9.6",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11"
+  },
+  "keywords": [
+    "observability",
+    "opentelemetry",
+    "runtime",
+    "tracing",
+    "typescript",
+    "visualization"
+  ]
 }

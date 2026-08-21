@@ -20,7 +20,13 @@ const ICONS = {
   queue: RadioTower,
 } satisfies Record<NodeKind, typeof Cable>;
 
-export function KindIcon({ kind, size = 16 }: { kind: NodeKind; size?: number }) {
+export function KindIcon({
+  kind,
+  size = 16,
+}: {
+  kind: NodeKind;
+  size?: number;
+}) {
   const Icon = ICONS[kind];
   return <Icon aria-hidden="true" size={size} strokeWidth={1.7} />;
 }

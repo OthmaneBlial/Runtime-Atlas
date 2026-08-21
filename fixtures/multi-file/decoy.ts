@@ -1,5 +1,8 @@
 declare const atlas: {
-  service: (descriptor: object, handler: () => Promise<unknown>) => () => Promise<unknown>;
+  service: (
+    descriptor: object,
+    handler: () => Promise<unknown>,
+  ) => () => Promise<unknown>;
 };
 
 // Intentionally duplicates the imported symbol name in orders.ts. The analyzer

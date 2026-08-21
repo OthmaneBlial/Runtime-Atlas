@@ -21,14 +21,30 @@ export function Timeline({
   return (
     <div className="timeline" aria-label="Trace timeline">
       <div className="timeline-controls">
-        <button type="button" onClick={onReplay} disabled={!max} aria-label="Replay trace"><RotateCcw size={14} /></button>
-        <button type="button" onClick={onToggle} disabled={!max} aria-label={playing ? "Pause replay" : "Play replay"}>
+        <button
+          type="button"
+          onClick={onReplay}
+          disabled={!max}
+          aria-label="Replay trace"
+        >
+          <RotateCcw size={14} />
+        </button>
+        <button
+          type="button"
+          onClick={onToggle}
+          disabled={!max}
+          aria-label={playing ? "Pause replay" : "Play replay"}
+        >
           {playing ? <Pause size={14} /> : <Play size={14} />}
         </button>
       </div>
       <div className="timeline-track">
         <div className="timeline-labels">
-          <span>{trace ? `${trace.method} ${trace.path.replace("/api/demo", "")}` : "NO TRACE SELECTED"}</span>
+          <span>
+            {trace
+              ? `${trace.method} ${trace.path.replace("/api/demo", "")}`
+              : "NO TRACE SELECTED"}
+          </span>
           <b>{trace?.duration != null ? `${trace.duration} MS` : "LIVE"}</b>
         </div>
         <input
@@ -42,7 +58,10 @@ export function Timeline({
           style={{ "--progress": `${progress}%` } as React.CSSProperties}
         />
       </div>
-      <div className="timeline-count"><strong>{String(cursor).padStart(2, "0")}</strong><span>/ {String(max).padStart(2, "0")} EVENTS</span></div>
+      <div className="timeline-count">
+        <strong>{String(cursor).padStart(2, "0")}</strong>
+        <span>/ {String(max).padStart(2, "0")} EVENTS</span>
+      </div>
     </div>
   );
 }

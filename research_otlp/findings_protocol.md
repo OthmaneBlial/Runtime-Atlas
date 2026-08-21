@@ -28,30 +28,40 @@ Representative request:
 
 ```json
 {
-  "resourceSpans": [{
-    "resource": {
-      "attributes": [{
-        "key": "service.name",
-        "value": { "stringValue": "checkout" }
-      }]
-    },
-    "scopeSpans": [{
-      "scope": { "name": "example.instrumentation", "version": "1.0.0" },
-      "spans": [{
-        "traceId": "5B8EFFF798038103D269B633813FC60C",
-        "spanId": "EEE19B7EC3C1B174",
-        "parentSpanId": "EEE19B7EC3C1B173",
-        "name": "GET /orders/{id}",
-        "kind": 2,
-        "startTimeUnixNano": "1544712660000000000",
-        "endTimeUnixNano": "1544712661000000000",
-        "attributes": [{
-          "key": "http.request.method",
-          "value": { "stringValue": "GET" }
-        }]
-      }]
-    }]
-  }]
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": { "stringValue": "checkout" }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": { "name": "example.instrumentation", "version": "1.0.0" },
+          "spans": [
+            {
+              "traceId": "5B8EFFF798038103D269B633813FC60C",
+              "spanId": "EEE19B7EC3C1B174",
+              "parentSpanId": "EEE19B7EC3C1B173",
+              "name": "GET /orders/{id}",
+              "kind": 2,
+              "startTimeUnixNano": "1544712660000000000",
+              "endTimeUnixNano": "1544712661000000000",
+              "attributes": [
+                {
+                  "key": "http.request.method",
+                  "value": { "stringValue": "GET" }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -68,16 +78,16 @@ Representative request:
 
 Each `KeyValue` is `{ "key": string, "value": AnyValue }`. `AnyValue` is a protobuf `oneof` and therefore has one wrapper key:
 
-| Type | JSON form |
-| --- | --- |
-| string | `{ "stringValue": "text" }` |
-| boolean | `{ "boolValue": true }` |
-| signed 64-bit integer | `{ "intValue": "42" }` (decoder also accepts `42`) |
-| double | `{ "doubleValue": 3.14 }` |
-| bytes | `{ "bytesValue": "AQI=" }` (standard protobuf base64; ID fields are the hex exception) |
-| array | `{ "arrayValue": { "values": [AnyValue, ...] } }` |
-| key-value list | `{ "kvlistValue": { "values": [{ "key": "k", "value": AnyValue }, ...] } }` |
-| empty | `{}` |
+| Type                  | JSON form                                                                              |
+| --------------------- | -------------------------------------------------------------------------------------- |
+| string                | `{ "stringValue": "text" }`                                                            |
+| boolean               | `{ "boolValue": true }`                                                                |
+| signed 64-bit integer | `{ "intValue": "42" }` (decoder also accepts `42`)                                     |
+| double                | `{ "doubleValue": 3.14 }`                                                              |
+| bytes                 | `{ "bytesValue": "AQI=" }` (standard protobuf base64; ID fields are the hex exception) |
+| array                 | `{ "arrayValue": { "values": [AnyValue, ...] } }`                                      |
+| key-value list        | `{ "kvlistValue": { "values": [{ "key": "k", "value": AnyValue }, ...] } }`            |
+| empty                 | `{}`                                                                                   |
 
 Arrays and key-value lists can recursively contain any `AnyValue`; array values need not be homogeneous. Keys in a key-value list, and attribute keys at resource/scope/span/event/link level, must be unique. `stringValueStrindex` exists as an Alpha, profiles-only choice in the current common proto; a non-profiling receiver should treat it as a non-fatal issue and process that value as empty.
 
@@ -96,6 +106,7 @@ Arrays and key-value lists can recursively contain any `AnyValue`; array values 
   ```
 
   `rejectedSpans` is `int64`, hence the encoded decimal string. The server must set it to the number rejected and should provide a developer-facing English message. A populated partial-success response must not be retried.
+
 - A server may send a warning after accepting everything by setting `rejectedSpans` to `"0"` and a non-empty `errorMessage`. An empty `partialSuccess` object is semantically equivalent to absent, although full-success senders are required to leave it unset.
 - A total failure uses an appropriate `4xx`/`5xx` and a protobuf-JSON `google.rpc.Status` body, not `ExportTraceServiceResponse`. Permanently malformed data is `400`; oversize data is `413`. Retryable OTLP/HTTP statuses are `429`, `502`, `503`, and `504`.
 
