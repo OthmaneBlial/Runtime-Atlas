@@ -4,7 +4,16 @@ All notable changes will be documented here. The project follows [Semantic Versi
 
 ## [Unreleased]
 
-No unreleased changes.
+### Added
+
+- Three-step showcase walkthrough using browser-validated checkout, source-inspection, and dependency-failure captures.
+- Dedicated 1280 × 640 social preview, canonical metadata, structured data, sitemap, crawler guidance, and static showcase verification.
+
+### Changed
+
+- Repositioned Runtime Atlas as a local request flight recorder for developer-time causal debugging and rewrote the README around a fresh-clone golden path.
+- Screenshot generation now captures the deterministic failure journey and synchronizes every product image into the static showcase.
+- GitHub CI and CodeQL triggers are temporarily manual-only while the project is being reworked; the complete local validation command remains unchanged.
 
 ## [0.1.0] - 2026-08-21
 

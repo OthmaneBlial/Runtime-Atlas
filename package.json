@@ -2,7 +2,7 @@
   "name": "runtime-atlas",
   "private": true,
   "version": "0.1.0",
-  "description": "Watch real application requests move across a source-backed architecture map in real time.",
+  "description": "Replay Node.js requests on a live architecture map linked back to TypeScript source.",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/OthmaneBlial/Runtime-Atlas/issues"
   },
-  "homepage": "https://github.com/OthmaneBlial/Runtime-Atlas#readme",
+  "homepage": "https://othmaneblial.github.io/Runtime-Atlas/",
   "type": "module",
   "engines": {
     "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -33,16 +33,18 @@
     "test:e2e": "npm run build && npm run test:e2e:run",
     "test:e2e:run": "playwright test",
     "test:e2e:headed": "npm run build && playwright test --headed",
+    "test:site": "node scripts/test-site.mjs",
     "typecheck": "npm run build:sdk && tsc -b",
     "lint": "oxlint . --deny-warnings",
     "format": "prettier --write . --ignore-unknown",
     "format:check": "prettier --check . --ignore-unknown",
     "check:repo": "node scripts/check-repository.mjs",
+    "check:site": "node scripts/check-site.mjs",
     "check:docs": "node scripts/check-docs.mjs",
     "check:sdk-package": "npm pack --dry-run --workspace @runtime-atlas/sdk",
     "screenshots": "npm run build && node scripts/capture-screenshots.mjs",
     "smoke": "node scripts/smoke-production.mjs",
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build && npm run test:e2e:run && npm run check:repo && npm run check:docs && npm run check:sdk-package && npm run smoke"
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build && npm run test:e2e:run && npm run test:site && npm run check:repo && npm run check:site && npm run check:docs && npm run check:sdk-package && npm run smoke"
   },
   "dependencies": {
     "express": "^5.2.1",
@@ -76,7 +78,10 @@
   "keywords": [
     "observability",
     "opentelemetry",
+    "request-debugging",
     "runtime",
+    "service-map",
+    "source-code",
     "tracing",
     "typescript",
     "visualization"

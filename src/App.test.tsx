@@ -162,7 +162,7 @@ describe("Runtime Atlas workspace", () => {
 
   it("has no detectable structural accessibility violations", async () => {
     render(<App />);
-    await screen.findByRole("heading", { name: /see the request/i });
+    await screen.findByRole("heading", { name: /see where it went/i });
 
     const result = await axe.run(document.body, {
       rules: {

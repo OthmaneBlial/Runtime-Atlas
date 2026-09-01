@@ -10,11 +10,17 @@
     "url": "git+https://github.com/OthmaneBlial/Runtime-Atlas.git",
     "directory": "packages/sdk"
   },
+  "homepage": "https://othmaneblial.github.io/Runtime-Atlas/docs.html#sdk",
+  "bugs": {
+    "url": "https://github.com/OthmaneBlial/Runtime-Atlas/issues"
+  },
   "keywords": [
     "observability",
     "opentelemetry",
+    "request-tracing",
     "tracing",
-    "instrumentation"
+    "instrumentation",
+    "typescript"
   ],
   "exports": {
     ".": {

@@ -260,13 +260,13 @@ export default function App() {
       <section className="mission-bar">
         <div className="mission-copy">
           <span className="eyebrow">
-            <Sparkles size={12} /> LIVING ARCHITECTURE{" "}
+            <Sparkles size={12} /> REQUEST FLIGHT RECORDER{" "}
             {topology.project?.demo && <b>LOCAL DEMO</b>}
           </span>
           <h1>
-            See the request.
+            See where it went.
             <br />
-            <em>Understand the system.</em>
+            <em>See the code behind it.</em>
           </h1>
         </div>
         <div className="system-metrics" aria-label="Runtime summary">
