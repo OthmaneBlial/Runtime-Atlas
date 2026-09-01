@@ -1,12 +1,9 @@
 name: CodeQL
 
+# Temporarily manual-only while the project is being reworked.
+# Restore push/pull_request/schedule triggers when the overhaul is complete.
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: "23 4 * * 1"
+  workflow_dispatch:
 
 permissions:
   contents: read

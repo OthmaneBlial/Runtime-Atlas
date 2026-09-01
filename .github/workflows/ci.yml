@@ -1,9 +1,9 @@
 name: CI
 
+# Temporarily manual-only while the project is being reworked.
+# Restore push/pull_request triggers when the overhaul is complete.
 on:
-  push:
-    branches: [main]
-  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
